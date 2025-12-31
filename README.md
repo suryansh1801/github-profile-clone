@@ -1,9 +1,9 @@
-##🚀 How to Run
+## 🚀 How to Run
 
 1. **Clone the project:**
     
     ```bash
-    git clone 
+    git clone https://github.com/suryansh1801/github-profile-clone.git
     cd github-profile-clone
     ```
     
