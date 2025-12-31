@@ -1,0 +1,585 @@
+/* --- Global Reset & Variables --- */
+* {
+  box-sizing: border-box; 
+}
+:root {
+  --bg-color: #ffffff;
+  --text-primary: #1F2328;
+  --text-secondary: #656d76;
+  --border-color: #d0d7de;
+  --link-color: #0969da;
+  --btn-bg: #f6f8fa;
+  --header-bg: #24292f;
+  
+  /* Heatmap Colors */
+  --heat-0: #ebedf0;
+  --heat-1: #9be9a8;
+  --heat-2: #40c463;
+  --heat-3: #30a14e;
+  --heat-4: #216e39;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Navigation --- */
+.navbar {
+  background-color: var(--header-bg);
+  padding: 16px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.nav-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* --- Layout --- */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-layout {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+  width: 100%; /* Ensure it fills screen width */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Tablet & Desktop: Row Layout */
+@media (min-width: 768px) {
+  .main-layout {
+    flex-direction: row;
+    align-items: flex-start; /* Prevents stretching height */
+  }
+
+  /* Fixed Width Sidebar */
+  .sidebar {
+    width: 296px; /* GitHub's standard sidebar width */
+    flex-shrink: 0; /* Never let the sidebar shrink */
+  }
+
+  /* Fluid Content Area */
+  .content {
+    flex: 1; /* Takes up all remaining space automatically */
+    min-width: 0; /* Magic CSS fix: Prevents flex children from overflowing */
+  }
+}
+
+/* Mobile: Stacked */
+@media (max-width: 767px) {
+  .sidebar {
+    width: 100%;
+  }
+  .content {
+    width: 100%;
+  }
+}
+
+.profile-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  margin-bottom: 16px;
+}
+
+.profile-img {
+  width: 100%;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  z-index: 1;
+}
+
+.status-icon {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.vcard-names {
+  margin-bottom: 16px;
+}
+.p-name {
+  display: block;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.p-nickname {
+  display: block;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 24px;
+}
+
+.bio {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.btn-edit-profile {
+  width: 100%;
+  background-color: var(--btn-bg);
+  border: 1px solid rgba(27,31,36,0.15);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 5px 16px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.detail-item a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.detail-item a:hover {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.achievements {
+  margin-top: 24px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
+}
+.achievements h3 {
+  font-size: 14px;
+  margin: 0 0 8px 0;
+}
+.badges img {
+  width: 64px;
+  height: 64px;
+  margin-right: 4px;
+}
+
+/* --- Content (Right) --- */
+.content {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .content {
+    width: 75%;
+  }
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+.tab {
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.tab:hover {
+  background: #f1f2f3;
+  border-radius: 6px 6px 0 0;
+}
+.tab.active {
+  font-weight: 600;
+  border-bottom: 2px solid #fd8c73;
+}
+.tab svg {
+  fill: var(--text-secondary);
+}
+.counter {
+  background: rgba(175, 184, 193, 0.2);
+  border-radius: 20px;
+  padding: 0 6px;
+  font-size: 12px;
+}
+
+/* Pinned Repos */
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+.section-title h2 {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+.link {
+  font-size: 12px;
+  color: var(--link-color);
+  cursor: pointer;
+}
+
+.pinned-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 900px) {
+  .pinned-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.repo-card {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.repo-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.repo-name {
+  font-weight: 600;
+  color: var(--link-color);
+  text-decoration: none;
+  font-size: 14px;
+}
+.badge {
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 0 7px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.repo-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+}
+.repo-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+}
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.lang-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Contribution Graph */
+.contributions-section {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 16px;
+}
+.contribution-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.contribution-header h2 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 400;
+}
+.settings {
+  font-size: 12px;
+  color: var(--link-color);
+  cursor: pointer;
+}
+
+/* Heatmap Logic using CSS Grid */
+.heatmap-scroll {
+  overflow-x: auto;
+}
+.heatmap-grid {
+  display: grid;
+  /* 53 Columns (weeks) and 7 Rows (days) */
+  grid-template-rows: repeat(7, 10px);
+  grid-auto-flow: column; 
+  gap: 3px;
+  padding-bottom: 10px;
+}
+
+.day-box {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: var(--heat-0);
+}
+.day-box.l1 { background-color: var(--heat-1); }
+.day-box.l2 { background-color: var(--heat-2); }
+.day-box.l3 { background-color: var(--heat-3); }
+.day-box.l4 { background-color: var(--heat-4); }
+
+.contribution-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 10px;
+}
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.legend .box {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+.legend .box.l0 { background: var(--heat-0); }
+.legend .box.l1 { background: var(--heat-1); }
+.legend .box.l2 { background: var(--heat-2); }
+.legend .box.l3 { background: var(--heat-3); }
+.legend .box.l4 { background: var(--heat-4); }
+
+/* --- GitHub Header Specifics --- */
+.gh-header-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; /* White background */
+  border-bottom: 1px solid #d0d7de;
+}
+
+/* --- Top Navbar --- */
+.gh-navbar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  height: 64px;
+  color: #1F2328; /* Dark text color */
+}
+
+/* Left Section */
+.gh-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.gh-menu-btn {
+  background: none;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 4px 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #1F2328;
+}
+.gh-logo {
+  display: flex;
+  align-items: center;
+  color: #1F2328;
+}
+.gh-username {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Right Section */
+.gh-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Search Bar */
+.gh-search-bar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .gh-search-bar {
+    display: block;
+  }
+}
+.gh-search-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f6f8fa; /* Light gray background */
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  padding: 0 8px;
+  width: 260px;
+  height: 32px;
+}
+.gh-search-input {
+  background: transparent;
+  border: none;
+  color: #1F2328;
+  font-size: 14px;
+  width: 100%;
+  margin-left: 8px;
+  outline: none;
+}
+.gh-search-key {
+  border: 1px solid #d0d7de;
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 0 6px;
+  color: #57606a;
+  background-color: #fff;
+}
+
+/* Divider Line */
+.gh-divider {
+  width: 1px;
+  height: 24px;
+  background-color: #d0d7de;
+  margin: 0 8px;
+}
+
+/* Icons & Avatar */
+.gh-icon-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.gh-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  height: 32px;
+  position: relative;
+  color: #1F2328;
+}
+.gh-nav-item:hover {
+   background-color: #f3f4f6;
+}
+.dropdown-caret {
+  font-size: 8px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.gh-avatar-small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+/* Notification Dot */
+.gh-notification-container {
+  position: relative;
+}
+.gh-notification-dot {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background-color: #0969da; /* Blue dot */
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+/* --- Bottom Tab Navigation --- */
+.gh-navbar-bottom {
+  padding: 0 24px;
+  overflow-x: auto;
+}
+.gh-tab-container {
+  display: flex;
+  gap: 8px;
+  max-width: 1280px;
+}
+.gh-tab-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #1F2328;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.gh-tab-item:hover {
+  color: #1F2328;
+  background: none;
+}
+/* Active Tab Style (Red Underline) */
+.gh-tab-item.active {
+  font-weight: 600;
+  border-bottom: 3px solid #fd8c73; /* Red underline */
+}
+.gh-tab-item.active svg {
+  fill: #1F2328;
+}
+
+/* Tab Counter Badge */
+.gh-tab-badge {
+  background: rgba(175, 184, 193, 0.2);
+  border-radius: 20px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 8px;
+  color: #1F2328;
+}
+/* Optional: Override ECharts default text font to match GitHub */
+.contributions-section {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
