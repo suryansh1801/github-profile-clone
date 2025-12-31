@@ -40,7 +40,6 @@ export const RepositoryList = ({ repos }) => {
 
   return (
     <div className="repo-list-section">
-       {/* Search/Filter Bar Placeholder */}
        <div style={{ display: 'flex', gap: '8px', paddingBottom: '16px', borderBottom: '1px solid #d0d7de', marginBottom: '8px' }}>
           <input type="text" placeholder="Find a repository..." style={{ flex: 1, padding: '5px 12px', borderRadius: '6px', border: '1px solid #d0d7de', fontSize: '14px' }} />
           <button style={{ backgroundColor: '#f6f8fa', border: '1px solid #d0d7de', borderRadius: '6px', padding: '5px 16px', fontWeight: '600', fontSize: '14px', color: '#24292f' }}>Type</button>

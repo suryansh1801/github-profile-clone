@@ -27,7 +27,6 @@ export const ProfileSidebar = ({ profile }) => {
 
       <div className="profile-details">
         <div className="detail-item">
-            {/* SVG paths omitted for brevity, you can reuse the ones from previous step */}
             <span><b>{profile.followers}</b> followers</span> · <span><b>{profile.following}</b> following</span>
         </div>
         {profile.company && <div className="detail-item">{profile.company}</div>}

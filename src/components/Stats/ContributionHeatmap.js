@@ -3,8 +3,7 @@ import ReactECharts from 'echarts-for-react';
 
 export const ContributionHeatmap = ({ data }) => {
   
-  // 1. HOOKS ALWAYS FIRST
-  // Transform Data for ECharts safely
+  
   const chartData = useMemo(() => {
     if (!data || !data.contributions) return [];
     
@@ -14,8 +13,6 @@ export const ContributionHeatmap = ({ data }) => {
     ]);
   }, [data]);
 
-  // 2. CONDITIONAL RETURN (Loading State)
-  // This must happen AFTER all hooks are declared
   if (!data || !data.contributions) {
     return <div className="loading-graph">Loading Contribution Graph...</div>;
   }
@@ -25,7 +22,7 @@ export const ContributionHeatmap = ({ data }) => {
   const startDate = data.contributions[0]?.date;
   const endDate = data.contributions[data.contributions.length - 1]?.date;
 
-  // 3. ECharts Configuration
+  // ECharts Configuration
   const option = {
     tooltip: {
       position: 'top',

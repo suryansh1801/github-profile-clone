@@ -18,9 +18,7 @@ export const Navbar = ({ username }) => {
 
   return (
     <header className="gh-header-container">
-      {/* --- Top Main Navbar --- */}
       <div className="gh-navbar-top">
-        {/* Left: Menu, Logo, User */}
         <div className="gh-nav-left">
           <button className="gh-menu-btn" aria-label="Global navigation menu">
             <svg height="24" viewBox="0 0 24 24" width="24" fill="#1F2328"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"></path></svg>
@@ -31,7 +29,6 @@ export const Navbar = ({ username }) => {
           <span className="gh-username">{user}</span>
         </div>
 
-        {/* Right: Search, Icons, Avatar */}
         <div className="gh-nav-right">
           <div className="gh-search-bar">
             <div className="gh-search-wrapper">
@@ -44,20 +41,16 @@ export const Navbar = ({ username }) => {
           <div className="gh-divider"></div>
 
           <nav className="gh-icon-nav">
-            {/* Create new... */}
             <div className="gh-nav-item">
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" width="16" fill="#1F2328"><path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path></svg>
               <span className="dropdown-caret">▼</span>
             </div>
-            {/* Issues */}
             <div className="gh-nav-item">
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" width="16" fill="#1F2328"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path></svg>
             </div>
-            {/* Pull requests */}
             <div className="gh-nav-item">
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" width="16" fill="#1F2328"><path d="M7.177 3.073L9.573.677A.25.25 0 0 1 10 .854v4.792a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm-2.25.75a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0Zm4.053 5.424c.003.088.006.175.009.263a.75.75 0 1 1-1.499.047c-.004-.13-.008-.263-.011-.401-.004-.15-.008-.31-.013-.48-.02-.66-.056-1.547-.197-2.435-.138-.868-.445-1.742-1.12-2.345C2.062 2.76 1 2.876 1 4.5c0 1.624 1.062 1.74 1.722 1.83.675.093.982.967 1.12 1.835.14.888.177 1.775.197 2.435.005.17.009.33.013.48.003.138.007.271.01.402.003.125.007.247.01.365.04.996.388 1.986 1.168 2.658 1.353 1.164 3.76.604 3.76-1.5a2.25 2.25 0 0 0-4.25-1Zm5.053 2.076a.75.75 0 1 1-1.492.148 3.75 3.75 0 0 1 7.382 0 .75.75 0 0 1-1.492-.148 2.25 2.25 0 0 0-4.398 0Z"></path></svg>
             </div>
-            {/* Notifications */}
             <div className="gh-nav-item gh-notification-container">
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" width="16" fill="#1F2328"><path d="M8 16a2 2 0 0 0 1.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 0 0 8 16ZM3 5a5 5 0 0 1 10 0v2.947c0 .05.015.098.042.139l1.703 2.555A1.519 1.519 0 0 1 13.482 13H2.518a1.516 1.516 0 0 1-1.263-2.36l1.703-2.554A.255.255 0 0 0 3 7.947V5Z"></path></svg>
               <span className="gh-notification-dot"></span>
@@ -71,7 +64,6 @@ export const Navbar = ({ username }) => {
         </div>
       </div>
 
-      {/* --- Bottom Tab Navigation --- */}
       <nav className="gh-navbar-bottom">
         <div className="gh-tab-container">
           {tabs.map((tab) => (

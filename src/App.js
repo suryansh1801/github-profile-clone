@@ -13,7 +13,6 @@ import { ProfileSidebar } from './components/Profile/ProfileSidebar';
 import { Overview } from './components/Tabs/Overview';
 import { RepositoryList } from './components/Tabs/RepositoryList';
 
-// --- The Profile Layout & Router ---
 const ProfileView = () => {
   const { username } = useParams(); // Gets 'shreeramk' from URL
   
@@ -25,27 +24,21 @@ const ProfileView = () => {
 
   return (
     <div className="container">
-      {/* Navbar with Tab Navigation (built-in) */}
       <Navbar username={username} />
       
       <div className="main-layout">
-        {/* Left Sidebar (Static) */}
         <ProfileSidebar profile={profile} />
 
-        {/* Right Content (Dynamic based on Route) */}
         <main className="content">
             <Routes>
-                {/* 1. Overview Tab (Default) */}
                 <Route index element={
                     <Overview repos={repos} contributions={contributions} />
                 } />
                 
-                {/* 2. Repositories Tab */}
                 <Route path="repos" element={
                     <RepositoryList repos={repos} />
                 } />
 
-                {/* 3. Other Tabs (Placeholders) */}
                 <Route path="projects" element={
                     <div className="empty-tab"><h3>Projects coming soon...</h3></div>
                 } />
@@ -62,15 +55,12 @@ const ProfileView = () => {
   );
 };
 
-// --- Main App Entry ---
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Wildcard to match /username and /username/anything */}
         <Route path="/:username/*" element={<ProfileView />} />
         
-        {/* Redirect root to default user */}
         <Route path="/" element={<Navigate to="/shreeramk" replace />} />
       </Routes>
     </Router>
